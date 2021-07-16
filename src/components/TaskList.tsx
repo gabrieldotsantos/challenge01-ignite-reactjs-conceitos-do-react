@@ -27,11 +27,17 @@ export function TaskList() {
       }
     ]);
 
-    console.log(tasks);
+    setNewTaskTitle('');
   }
 
   function handleToggleTaskCompletion(id: number) {
-    // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    let newTasks = tasks.map(task => 
+      task.id === id 
+      ? { ...task, isComplete: !task.isComplete } 
+      : task
+    );
+    
+    setTasks(newTasks);
   }
 
   function handleRemoveTask(id: number) {
